@@ -16,6 +16,7 @@ Redmine::Plugin.register :redmine_reminder do
   version '0.1.1 custom'
   url 'https://github.com/Undev/redmine_reminder'
   author_url 'http://www.alvila.com'
+end
 
 Redmine::MenuManager.map :admin_menu do |menu|
   menu.push :reminder_options, {:controller => :reminder_configuration, :action => :edit}, :caption => :label_reminder_options
