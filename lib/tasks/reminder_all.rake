@@ -33,7 +33,7 @@ namespace :redmine do
       puts r.user
       next unless r.user.is_a?(User) && r.user.active?
       ReminderAllMailer.with_synched_deliveries do
-        ReminderAllMailer.deliver_reminder_all(
+        ReminderAllMailer.deliver_reminder_all_if_any(
             r.user,
             r[:assigned_to],
             r[:author],

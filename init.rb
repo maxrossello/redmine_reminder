@@ -11,12 +11,11 @@ end
 
 Redmine::Plugin.register :redmine_reminder do
   name 'Advanced reminder'
-  author 'Milan Stastny of ALVILA SYSTEMS'
+  author 'Milan Stastny of ALVILA SYSTEMS & Undev'
   description 'E-mail notification of issues due date you are involved in (Assignee, Author, Watcher)'
-  version '0.0.10'
-  url 'https://github.com/thambley/redmine_reminder'
-  requires_redmine :version_or_higher => '2.1.0'
-end
+  version '0.1.1 custom'
+  url 'https://github.com/Undev/redmine_reminder'
+  author_url 'http://www.alvila.com'
 
 Redmine::MenuManager.map :admin_menu do |menu|
   menu.push :reminder_options, {:controller => :reminder_configuration, :action => :edit}, :caption => :label_reminder_options

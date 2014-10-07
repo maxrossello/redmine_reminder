@@ -10,12 +10,15 @@ class ReminderConfiguration < ActiveRecord::Base
   TRACKER_VARIANTS = [ALL, EXPLICIT]
 
   validates :days, :presence => true
+
   validates :issue_status_selector,
             :presence => true,
             :inclusion => { :in => ISSUE_STATUS_VARIANTS }
+
   validates :project_selector,
             :presence => true,
             :inclusion => { :in => PROJECT_VARIANTS }
+
   validates :tracker_selector,
             :presence => true,
             :inclusion => { :in => TRACKER_VARIANTS }
@@ -35,4 +38,21 @@ class ReminderConfiguration < ActiveRecord::Base
     end
   end
 
+  after_initialize do
+    set_default_values if new_record?
+  end
+
+  private
+
+  def set_default_values
+    self.days ||= 7
+    self.issue_status_selector ||= ALL_OPENED
+    self.project_selector ||= ALL
+    self.tracker_selector ||= ALL
+    self.send_to_author = true if self.send_to_author.nil?
+    self.send_to_assigned_to = true if self.send_to_assigned_to.nil?
+    self.send_to_watcher = true if self.send_to_watcher.nil?
+    self.send_to_custom_user ||= false
+    true
+  end
 end
