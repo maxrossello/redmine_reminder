@@ -1,7 +1,8 @@
 # Advanced Redmine Notifications
 
 E-mail notification of issues due date you are involved in (Assignee, Author, Watcher, Custom field, Assigned group).
-Supports group watchers (see [redmine_watcher_groups](https://github.com/maxrossello/redmine_watcher_groups).
+
+Supports group watchers as well (with plugin [redmine_watcher_groups](https://github.com/maxrossello/redmine_watcher_groups)).
 
 ## Install
 
