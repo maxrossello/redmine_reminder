@@ -33,9 +33,14 @@ class RedmineReminder::Collector
 
       if options.send_to_watcher?
         issue.watchers.each do |watcher|
-          reminders[watcher.user] ||=
-              RedmineReminder::Reminder.new(watcher.user)
-          reminders[watcher.user][:watcher] << issue
+          # support for group watchers
+          p = Principal.find(watcher.user_id)
+          users = (p.is_a?(Group) ? p.users : [p])
+          users.each do |user|
+            reminders[user] ||=
+                RedmineReminder::Reminder.new(user)
+            reminders[user][:watcher] << issue
+          end
         end
       end
 
